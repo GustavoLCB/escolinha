@@ -1,0 +1,124 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Craques do Futuro</title>
+    
+    <link rel="shortcut icon" href="{% static 'escolinha/img/logoestacao2.jpg' %}" type="image/jpg">
+
+    <style>
+        /* --- ESTILOS GERAIS (CSS) --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #4B2264; /* Roxo Realeza */
+            color: #F4E341; /* Amarelo */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a { text-decoration: none; color: #F4E341; transition: 0.3s; }
+        a:hover { color: #fff; }
+
+        /* NAVBAR */
+        header {
+            background-color: #38184C;
+            padding: 10px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .logo-container img { height: 60px; width: auto; }
+
+        .nav-links { display: flex; gap: 20px; align-items: center; font-weight: bold; }
+
+        .btn-login {
+            border: 2px solid #F4E341;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .btn-login:hover { background-color: #F4E341; color: #4B2264; }
+
+        /* MAIN */
+        main { flex: 1; padding: 40px 20px; text-align: center; }
+
+        /* Estilos comuns para caixas de conteúdo */
+        .box { 
+            border: 2px solid #F4E341; 
+            padding: 40px; 
+            margin: 0 auto; 
+            max-width: 800px; 
+            border-radius: 15px;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        h1 { margin-bottom: 20px; font-size: 2.5rem; }
+
+        /* FOOTER */
+        footer {
+            background-color: #38184C;
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <a href="/">
+                <img src="{% static 'escolinha/img/logoestacao2.jpg' %}" alt="Logo Escolinha">
+            </a>
+        </div>
+        
+        <nav class="nav-links">
+            <a href="{% url 'metodologia' %}">Metodologia</a>
+            <a href="https://waze.com/ul?ll=-23.0067805,-43.373566&navigate=yes" target="_blank">Localização</a>
+            <a href="{% url 'professores' %}">Professores</a>
+            <a href="{% url 'valores' %}">Valores</a>
+            <a href="https://wa.me/5521995991357?text=Olá, gostaria de saber mais sobre a escolinha!" target="_blank" style="color: #F4E341;">
+                Contato 📱
+            </a>
+            
+            {% if user.is_authenticated %}
+                
+                <a href="{% url 'lista_alunos' %}" style="border-bottom: 2px solid #F4E341;">
+                    Alunos 📋
+                </a>
+
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <span style="color: #F4E341;">Olá, {{ user.username }}</span>
+                    
+                    <form action="{% url 'logout' %}" method="post" style="margin:0;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-login" style="cursor: pointer; background: transparent; color: #F4E341;">
+                            SAIR
+                        </button>
+                    </form>
+                </div>
+
+            {% else %}
+                <a href="{% url 'login' %}" class="btn-login">LOGIN</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; {% now "Y" %} Escolinha Estação de Craques - Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>

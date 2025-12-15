@@ -1,0 +1,75 @@
+{% extends 'escolinha/base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .box-professores { max-width: 1300px !important; }
+
+    .professores-grid {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 20px;
+        justify-content: space-between;
+        margin-top: 30px;
+        overflow-x: auto;
+        padding-bottom: 10px;
+    }
+
+    .card-prof {
+        background-color: #fff;
+        border: 2px solid #F4E341;
+        border-radius: 10px;
+        flex: 1;
+        min-width: 220px;
+        color: #38184C;
+        transition: transform 0.3s;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card-prof:hover { transform: scale(1.05); }
+
+    .card-prof img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        object-position: top center;
+        border-bottom: 2px solid #F4E341;
+        background-color: #eee; /* Cor de fundo caso não tenha foto */
+    }
+
+    .info { padding: 15px; }
+    .info h3 { margin-bottom: 5px; color: #4B2264; font-size: 1.2rem; }
+    .info p { font-size: 0.95rem; line-height: 1.4; margin-bottom: 5px; }
+    .desc { font-size: 0.85rem; color: #666; margin-top: 10px; }
+</style>
+
+<div class="box box-professores">
+    <h1>Nossa Equipe de Craques</h1>
+    <p>Conheça os profissionais que cuidarão do desenvolvimento do seu filho.</p>
+
+    <div class="professores-grid">
+        
+        {% for professor in professores %}
+        <div class="card-prof">
+            {% if professor.foto %}
+                <img src="{{ professor.foto.url }}" alt="Foto de {{ professor.nome }}">
+            {% else %}
+                <div style="height: 300px; background: #ddd; display:flex; align-items:center; justify-content:center;">
+                    Sem Foto
+                </div>
+            {% endif %}
+            
+            <div class="info">
+                <h3>{{ professor.nome }}</h3>
+                <p><strong>Especialidade:</strong> {{ professor.especialidade }}</p>
+                <p class="desc">{{ professor.descricao }}</p>
+            </div>
+        </div>
+        {% empty %}
+            <p>Nenhum professor cadastrado ainda.</p>
+        {% endfor %}
+
+    </div>
+</div>
+{% endblock %}

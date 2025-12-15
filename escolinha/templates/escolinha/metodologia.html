@@ -1,0 +1,106 @@
+{% extends 'escolinha/base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .metodologia-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+        margin-top: 30px;
+    }
+
+    /* Estilo dos Pilares (Caixas) */
+    .pilar-box {
+        background-color: #fff;
+        border-left: 5px solid #F4E341; /* Linha amarela lateral */
+        padding: 30px;
+        border-radius: 8px;
+        width: 100%;
+        max-width: 900px;
+        text-align: left;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .icone-pilar {
+        font-size: 3rem; /* Tamanho do emoji */
+        min-width: 80px;
+        text-align: center;
+    }
+
+    .conteudo-pilar h2 {
+        color: #4B2264;
+        margin-bottom: 10px;
+    }
+
+    .conteudo-pilar p {
+        color: #333;
+        line-height: 1.6;
+        font-size: 1rem;
+    }
+
+    /* Faixa de destaque */
+    .faixa-destaque {
+        background-color: #F4E341;
+        color: #4B2264;
+        padding: 20px;
+        border-radius: 10px;
+        font-weight: bold;
+        font-size: 1.2rem;
+        margin-top: 20px;
+        max-width: 800px;
+    }
+</style>
+
+<div class="box" style="background: transparent; border: none; max-width: 1000px;">
+    <h1>Nossa Metodologia</h1>
+    <p>Mais do que craques, formamos cidadãos. Entenda como trabalhamos.</p>
+
+    <div class="metodologia-container">
+        
+        <div class="pilar-box">
+            <div class="icone-pilar">🎈</div>
+            <div class="conteudo-pilar">
+                <h2>1. Iniciação Lúdica (4 a 6 anos)</h2>
+                <p>
+                    Nesta fase, o foco é a <strong>paixão pelo esporte</strong>. 
+                    Através de brincadeiras e jogos em um campo reduzido, desenvolvemos a coordenação motora básica, 
+                    o equilíbrio e a socialização, sem pressão por resultados. O objetivo é a diversão.
+                </p>
+            </div>
+        </div>
+
+        <div class="pilar-box">
+            <div class="icone-pilar">⚽</div>
+            <div class="conteudo-pilar">
+                <h2>2. Desenvolvimento Técnico (7 a 10 anos)</h2>
+                <p>
+                    Aqui começamos a introduzir os <strong>fundamentos do futebol</strong>: 
+                    passe, domínio, chute, cabeceio e condução. O aluno aprende as regras do jogo, o posicionamento em campo, táticas e a importância do trabalho em equipe e disciplina.
+                </p>
+            </div>
+        </div>
+
+        <div class="pilar-box">
+            <div class="icone-pilar">🏆</div>
+            <div class="conteudo-pilar">
+                <h2>3. Aperfeiçoamento (11 a 17 anos)</h2>
+                <p>
+                    Foco na <strong>parte tática e competitiva</strong>. 
+                    Trabalhamos sistemas de jogo, inteligência emocional sob pressão e condicionamento físico específico. 
+                    Preparamos o atleta para peneiras e competições de alto nível.
+                </p>
+            </div>
+        </div>
+
+        <div class="faixa-destaque">
+            "Ensinar futebol com respeito, disciplina e alegria."
+        </div>
+
+    </div>
+</div>
+{% endblock %}

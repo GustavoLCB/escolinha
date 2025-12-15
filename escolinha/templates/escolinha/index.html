@@ -1,0 +1,272 @@
+{% extends 'escolinha/base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    /* --- 1. Estilos do Card de Boas-Vindas --- */
+    .welcome-section {
+        background-color: transparent; 
+        border: 4px solid #F4E341;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 50px;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        color: #F4E341; 
+    }
+
+    .welcome-logo {
+        width: 120px;
+        height: auto;
+        margin-bottom: 20px;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        padding: 5px; background: #fff;
+    }
+
+    .welcome-title {
+        color: #F4E341;
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    .welcome-text {
+        color: #F4E341;
+        font-size: 1.2rem;
+    }
+
+    .destaque-ano {
+        color: #ffffff; 
+        font-weight: bold;
+        font-size: 1.5rem;
+        margin-top: 25px;
+        display: block;
+        text-decoration: underline;
+    }
+
+    /* --- 2. Estilos das Turmas (Grid) --- */
+    .turmas-container {
+        text-align: center;
+    }
+    
+    .titulo-secao {
+        color: #F4E341;
+        font-size: 2rem;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .grid-turmas {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        max-width: 1100px;
+        margin: 30px auto;
+    }
+
+    @media (max-width: 768px) {
+        .grid-turmas { grid-template-columns: 1fr; }
+        .welcome-title { font-size: 1.8rem; }
+    }
+
+    /* --- MUDANÇA AQUI: CARDS AMARELOS --- */
+    .card-turma {
+        background-color: #F4E341; /* Fundo Amarelo */
+        border: 2px solid #4B2264; /* Borda Roxa para destacar */
+        
+        border-radius: 10px;
+        padding: 20px;
+        color: #38184C; /* Texto Roxo Escuro */
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        transition: transform 0.2s;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+
+    .card-turma:hover { transform: translateY(-5px); }
+
+    .card-turma h3 { 
+        color: #4B2264; /* Título Roxo */
+        margin-bottom: 10px; 
+        font-size: 1.2rem; 
+    }
+    
+    .card-turma p { 
+        font-size: 0.95rem; 
+        margin-bottom: 5px; 
+        font-weight: 500; /* Deixei o texto um pouco mais encorpado */
+    }
+    
+    .horario { 
+        font-weight: bold; 
+        color: #d32f2f; /* Mantive vermelho para destaque, mas roxo também ficaria bom */
+        margin-bottom: 15px !important; 
+    }
+
+    .btn-saiba-mais {
+        background-color: #4B2264; /* Botão Roxo */
+        color: #F4E341; /* Texto Amarelo */
+        border: none;
+        padding: 10px 20px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: 0.3s;
+        margin-top: auto;
+        border: 1px solid #4B2264;
+    }
+    
+    /* Quando passa o mouse no botão, ele inverte para branco */
+    .btn-saiba-mais:hover { 
+        background-color: #fff; 
+        color: #4B2264; 
+    }
+
+    /* --- 3. Estilos do MODAL --- */
+    .modal-fundo {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.7);
+        animation: fadeIn 0.3s;
+    }
+
+    .modal-conteudo {
+        background-color: #fff;
+        margin: 15% auto;
+        padding: 30px;
+        border: 3px solid #F4E341;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 500px;
+        text-align: center;
+        position: relative;
+        color: #38184C;
+    }
+
+    .fechar-modal {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+        position: absolute;
+        top: 10px;
+        right: 20px;
+    }
+    .fechar-modal:hover { color: #000; }
+
+    .btn-whatsapp-modal {
+        background-color: #25D366;
+        color: white;
+        padding: 12px 25px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: bold;
+        display: inline-block;
+        margin-top: 20px;
+        border: none;
+    }
+    .btn-whatsapp-modal:hover { background-color: #1ebc57; color: white; }
+
+    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+</style>
+
+<div class="welcome-section">
+    <img src="{% static 'escolinha/img/logoestacao2.jpg' %}" alt="Logo" class="welcome-logo">
+    
+    <h1 class="welcome-title">Escolinha Estação de Craques</h1>
+    <p class="welcome-text">Bem-vindo ao nosso site oficial!</p>
+    
+    <hr style="border-color: #F4E341; opacity: 0.5; margin: 20px auto; max-width: 60%;">
+
+    <span class="destaque-ano">Matrículas Abertas para 2026</span>
+    <p class="welcome-text" style="margin-top: 15px;">
+        Venha fazer parte do nosso time. Treinos para todas as idades.
+    </p>
+</div>
+
+<div class="turmas-container">
+    <h2 class="titulo-secao">Nossas Turmas e Horários</h2>
+    <p style="color: #F4E341; margin-bottom: 20px;">Confira a categoria ideal para o seu filho(a)</p>
+
+    <div class="grid-turmas">
+        <div class="card-turma">
+            <h3>Sub-6 (Manhã)</h3>
+            <p>4 a 6 anos</p>
+            <p class="horario">Terça e Quinta - 09h às 10h</p>
+            <button class="btn-saiba-mais" onclick="abrirModal('Sub-6 Manhã')">Saiba Mais</button>
+        </div>
+        <div class="card-turma">
+            <h3>Sub-6 (Tarde)</h3>
+            <p>4 a 6 anos</p>
+            <p class="horario">Terça e Quinta - 16h às 17h</p>
+            <button class="btn-saiba-mais" onclick="abrirModal('Sub-6 Tarde')">Saiba Mais</button>
+        </div>
+        <div class="card-turma">
+            <h3>Sub-10 (Manhã)</h3>
+            <p>7 a 10 anos</p>
+            <p class="horario">Seg e Qua - 09h às 10h30</p>
+            <button class="btn-saiba-mais" onclick="abrirModal('Sub-10 Manhã')">Saiba Mais</button>
+        </div>
+        <div class="card-turma">
+            <h3>Sub-10 (Tarde)</h3>
+            <p>7 a 10 anos</p>
+            <p class="horario">Seg e Qua - 16h às 17h30</p>
+            <button class="btn-saiba-mais" onclick="abrirModal('Sub-10 Tarde')">Saiba Mais</button>
+        </div>
+        <div class="card-turma">
+            <h3>Sub-15 (Noite)</h3>
+            <p>11 a 15 anos</p>
+            <p class="horario">Terça e Quinta - 19h às 20h30</p>
+            <button class="btn-saiba-mais" onclick="abrirModal('Sub-15 Noite')">Saiba Mais</button>
+        </div>
+        <div class="card-turma">
+            <h3>Adulto / Sub-17 (Noite)</h3>
+            <p>15 anos ou mais</p>
+            <p class="horario">Seg e Qua - 20h às 22h</p>
+            <button class="btn-saiba-mais" onclick="abrirModal('Turma 15+ Noite')">Saiba Mais</button>
+        </div>
+    </div>
+</div>
+
+<div id="meuModal" class="modal-fundo">
+    <div class="modal-conteudo">
+        <span class="fechar-modal" onclick="fecharModal()">&times;</span>
+        <h2 id="tituloModal">Atenção</h2>
+        <p style="margin-top: 15px; font-size: 1.1rem;">
+            Para garantir sua vaga na turma de <strong id="nomeTurma">Futebol</strong>, 
+            é necessário entrar em contato com nossa secretaria.
+        </p>
+        <p>Agende sua aula experimental agora mesmo!</p>
+        <a href="https://wa.me/5521995991357?text=Olá, tenho interesse na turma!" target="_blank" class="btn-whatsapp-modal">
+            Falar no WhatsApp
+        </a>
+    </div>
+</div>
+
+<script>
+    function abrirModal(turma) {
+        var modal = document.getElementById("meuModal");
+        var textoTurma = document.getElementById("nomeTurma");
+        textoTurma.innerText = turma;
+        modal.style.display = "block";
+    }
+    function fecharModal() {
+        document.getElementById("meuModal").style.display = "none";
+    }
+    window.onclick = function(event) {
+        var modal = document.getElementById("meuModal");
+        if (event.target == modal) { modal.style.display = "none"; }
+    }
+</script>
+{% endblock %}

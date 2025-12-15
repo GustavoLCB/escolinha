@@ -1,0 +1,72 @@
+{% extends 'escolinha/base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .login-container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 40px;
+        background-color: #fff; /* Fundo branco para leitura */
+        border: 2px solid #F4E341; /* Borda amarela */
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        text-align: center;
+    }
+
+    .login-header h2 { color: #4B2264; margin-bottom: 10px; }
+    .login-header p { color: #666; font-size: 0.9rem; margin-bottom: 30px; }
+
+    /* Estilizando os inputs */
+    .form-group { margin-bottom: 15px; text-align: left; }
+    
+    input {
+        width: 100%;
+        padding: 12px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-sizing: border-box;
+    }
+
+    /* Botão Entrar */
+    .btn-entrar {
+        background-color: #4B2264;
+        color: #F4E341;
+        width: 100%;
+        padding: 15px;
+        border: none;
+        border-radius: 25px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-top: 10px;
+    }
+
+    .btn-entrar:hover { background-color: #38184C; color: #fff; }
+</style>
+
+<div class="login-container">
+    <div class="login-header">
+        <h2>Área do Associado</h2>
+        <p>Acesse para ver horários exclusivos.</p>
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label style="color:#4B2264; font-weight:bold;">Usuário</label>
+            <input type="text" name="username" required placeholder="Digite seu usuário">
+        </div>
+
+        <div class="form-group">
+            <label style="color:#4B2264; font-weight:bold;">Senha</label>
+            <input type="password" name="password" required placeholder="Digite sua senha">
+        </div>
+
+        <button type="submit" class="btn-entrar">ENTRAR</button>
+    </form>
+</div>
+{% endblock %}

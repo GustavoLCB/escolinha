@@ -1,0 +1,107 @@
+{% extends 'escolinha/base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .pricing-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 30px;
+    }
+
+    .card-price {
+        background-color: #fff;
+        color: #38184C;
+        border-radius: 15px;
+        width: 300px;
+        padding: 30px;
+        text-align: center;
+        transition: transform 0.3s, box-shadow 0.3s;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #ddd;
+    }
+
+    .card-price:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        border-color: #F4E341;
+    }
+
+    .titulo-plano {
+        color: #4B2264;
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+    
+    .subtitulo { font-size: 0.9rem; color: #666; margin-bottom: 10px; }
+
+    .preco {
+        font-size: 2.5rem;
+        color: #38184C;
+        font-weight: bold;
+        margin: 20px 0;
+    }
+
+    .lista-beneficios {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 30px;
+        flex: 1;
+        text-align: left;
+    }
+
+    .lista-beneficios li {
+        padding: 8px 0;
+        border-bottom: 1px solid #eee;
+        font-size: 0.95rem;
+    }
+
+    .btn-plano {
+        background-color: #4B2264;
+        color: #F4E341;
+        padding: 12px;
+        border-radius: 25px;
+        font-weight: bold;
+        display: block;
+        width: 100%;
+        transition: 0.3s;
+    }
+    .btn-plano:hover { background-color: #38184C; color: #fff; }
+</style>
+
+<div class="box" style="background: transparent; border: none; max-width: 1000px;">
+    <h1>Planos e Mensalidades</h1>
+    <p>Escolha a melhor opção para o seu pequeno craque.</p>
+
+    <div class="pricing-container">
+        
+        {% for plano in planos %}
+        <div class="card-price">
+            <h3 class="titulo-plano">{{ plano.titulo }}</h3>
+            <p class="subtitulo">{{ plano.subtitulo }}</p>
+            
+            <div class="preco">
+                R$ {{ plano.preco }}
+            </div>
+
+            <ul class="lista-beneficios">
+                {% for beneficio in plano.get_beneficios_list %}
+                    <li>✅ {{ beneficio }}</li>
+                {% endfor %}
+            </ul>
+
+            <a href="https://wa.me/5521999999999?text=Olá, quero contratar o plano {{ plano.titulo }}" target="_blank" class="btn-plano">
+                Quero este
+            </a>
+        </div>
+        {% empty %}
+            <p>Nenhum plano cadastrado.</p>
+        {% endfor %}
+
+    </div>
+</div>
+{% endblock %}
