@@ -38,12 +38,17 @@
 
         .nav-links { display: flex; gap: 20px; align-items: center; font-weight: bold; }
 
-        .btn-login {
+        /* Botão Sair */
+        .btn-logout {
             border: 2px solid #F4E341;
-            padding: 8px 20px;
+            padding: 5px 15px;
             border-radius: 20px;
+            background: transparent;
+            color: #F4E341;
+            cursor: pointer;
+            font-weight: bold;
         }
-        .btn-login:hover { background-color: #F4E341; color: #4B2264; }
+        .btn-logout:hover { background-color: #F4E341; color: #4B2264; }
 
         /* MAIN */
         main { flex: 1; padding: 40px 20px; text-align: center; }
@@ -63,10 +68,28 @@
         /* FOOTER */
         footer {
             background-color: #38184C;
-            padding: 20px;
+            padding: 20px 40px;
             text-align: center;
             font-size: 0.9rem;
             margin-top: auto;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .admin-login-link {
+            position: absolute;
+            right: 40px;
+            font-size: 0.8rem;
+            color: #666;
+            opacity: 0.5;
+            transition: 0.3s;
+        }
+        
+        .admin-login-link:hover {
+            color: #F4E341;
+            opacity: 1;
         }
     </style>
 </head>
@@ -81,32 +104,31 @@
         
         <nav class="nav-links">
             <a href="{% url 'metodologia' %}">Metodologia</a>
-            <a href="https://waze.com/ul?ll=-23.0067805,-43.373566&navigate=yes" target="_blank">Localização</a>
+            
+            <a href="https://www.google.com/maps/search/?api=1&query=Escola+de+Futebol+Estação+de+Craques+Barra+da+Tijuca" target="_blank">Localização</a>
+            
             <a href="{% url 'professores' %}">Professores</a>
             <a href="{% url 'valores' %}">Valores</a>
+            
             <a href="https://wa.me/5521995991357?text=Olá, gostaria de saber mais sobre a escolinha!" target="_blank" style="color: #F4E341;">
-                Contato 📱
+                Contato
             </a>
             
             {% if user.is_authenticated %}
+                <span style="color: #fff; opacity: 0.5;">|</span>
                 
-                <a href="{% url 'lista_alunos' %}" style="border-bottom: 2px solid #F4E341;">
+                <a href="{% url 'lista_alunos' %}" style="border-bottom: 1px solid #F4E341;">
                     Alunos 📋
                 </a>
 
-                <div style="display: flex; align-items: center; gap: 15px;">
-                    <span style="color: #F4E341;">Olá, {{ user.username }}</span>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="font-size: 0.9rem; color: #ccc;">Olá, {{ user.username }}</span>
                     
                     <form action="{% url 'logout' %}" method="post" style="margin:0;">
                         {% csrf_token %}
-                        <button type="submit" class="btn-login" style="cursor: pointer; background: transparent; color: #F4E341;">
-                            SAIR
-                        </button>
+                        <button type="submit" class="btn-logout">SAIR</button>
                     </form>
                 </div>
-
-            {% else %}
-                <a href="{% url 'login' %}" class="btn-login">LOGIN</a>
             {% endif %}
         </nav>
     </header>
@@ -117,7 +139,13 @@
     </main>
 
     <footer>
-        <p>&copy; {% now "Y" %} Escolinha Estação de Craques - Todos os direitos reservados.</p>
+        <p>© {% now "Y" %} Escolinha Estação de Craques - Todos os direitos reservados.</p>
+
+        {% if not user.is_authenticated %}
+            <a href="{% url 'login' %}" class="admin-login-link">
+                Área Restrita 🔒
+            </a>
+        {% endif %}
     </footer>
 
 </body>
