@@ -2,84 +2,66 @@
 {% load static %}
 
 {% block content %}
-<style>
-    .tabela-container {
-        background-color: #fff;
-        border: 2px solid #F4E341;
-        border-radius: 10px;
-        padding: 20px;
-        max-width: 900px;
-        margin: 0 auto;
-        color: #38184C;
-    }
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-    }
+<div class="box box-alunos">
+    <h1>Controle de Craques</h1>
+    <p>Lista de alunos matriculados e contatos.</p>
 
-    th, td {
-        padding: 12px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-    }
-
-    th {
-        background-color: #4B2264;
-        color: #F4E341;
-        font-weight: bold;
-    }
-
-    tr:hover { background-color: #f9f9f9; }
-
-    .tag-cat {
-        background-color: #F4E341;
-        color: #4B2264;
-        padding: 3px 10px;
-        border-radius: 15px;
-        font-size: 0.8rem;
-        font-weight: bold;
-    }
-</style>
-
-<div class="box" style="background: transparent; border: none; max-width: 1000px;">
-    <h1>Controle de Alunos</h1>
-    <p>Área restrita da diretoria.</p>
-
-    <div class="tabela-container">
-        <table>
+    <div class="tabela-responsive">
+        <table class="tabela-alunos">
             <thead>
                 <tr>
                     <th>Nome do Atleta</th>
-                    <th>Nascimento</th>
-                    <th>Idade</th>
+                    <th>Contato Responsável</th>
+                    <th>Nascimento (Idade)</th>
                     <th>Categoria</th>
-                    <th>Obs</th>
                 </tr>
             </thead>
             <tbody>
                 {% for aluno in alunos %}
                 <tr>
                     <td><strong>{{ aluno.nome }}</strong></td>
-                    <td>{{ aluno.ano_nascimento }}</td>
-                    <td>{{ aluno.idade }} anos</td>
-                    <td><span class="tag-cat">{{ aluno.categoria }}</span></td>
-                    <td>{{ aluno.observacoes|default:"-" }}</td>
+                    
+                    <td>
+                        {% if aluno.telefone %}
+                            <a href="https://wa.me/55{{ aluno.telefone|cut:' '|cut:'-'|cut:'('|cut:')' }}" target="_blank" style="color:#25D366; font-weight:bold; text-decoration: none;">
+                                📱 {{ aluno.telefone }}
+                            </a>
+                        {% else %}
+                            <span style="color:#999;">-</span>
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {{ aluno.ano_nascimento }} 
+                        <span style="font-size: 0.85rem; color: #666;">
+                            ({{ aluno.idade }} anos)
+                        </span>
+                    </td>
+                    
+                    <td>
+                        <span style="background: #F4E341; color: #4B2264; padding: 4px 10px; border-radius: 15px; font-weight: bold; font-size: 0.85rem;">
+                            {{ aluno.categoria }}
+                        </span>
+                    </td>
                 </tr>
                 {% empty %}
                 <tr>
-                    <td colspan="5" style="text-align:center;">Nenhum aluno cadastrado. Vá ao Admin para adicionar.</td>
+                    <td colspan="4" style="text-align:center; padding: 20px;">
+                        Nenhum aluno cadastrado.
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-        
-        <div style="margin-top: 20px; text-align: right;">
-            <a href="/admin/escolinha/aluno/add/" target="_blank" class="btn-login" style="background:#4B2264; color:#fff;">
-                + Adicionar Novo Aluno
-            </a>
-        </div>
     </div>
+
+    <div style="margin-top: 20px; text-align: right;">
+        <a href="{% url 'admin:index' %}" target="_blank" class="btn-saiba-mais">
+            + Acessar Painel Admin
+        </a>
+    </div>
+
 </div>
+
 {% endblock %}

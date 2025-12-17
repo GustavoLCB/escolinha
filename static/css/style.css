@@ -1,0 +1,864 @@
+/* =========================================
+   1. RESET E CONFIGURAÇÕES GERAIS
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #4B2264; /* Roxo Realeza */
+    color: #F4E341; /* Amarelo */
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden; /* Evita rolagem lateral no celular */
+}
+
+a {
+    text-decoration: none;
+    color: #F4E341;
+    transition: 0.3s;
+}
+a:hover { color: #fff; }
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* =========================================
+   2. CABEÇALHO (HEADER) E NAVEGAÇÃO
+   (MOBILE FIRST - Começa estilo Celular)
+   ========================================= */
+header {
+    background-color: #38184C;
+    padding: 15px 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    
+    /* No celular: Itens um embaixo do outro */
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-container img {
+    height: 70px;
+    width: auto;
+    border-radius: 50%;
+    border: 2px solid #F4E341;
+}
+
+.nav-links {
+    display: flex;
+    flex-direction: column; /* Links empilhados no celular */
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+    font-weight: bold;
+}
+
+.nav-links a {
+    font-size: 1.1rem;
+    padding: 5px;
+    text-transform: uppercase;
+}
+
+/* Botão Sair */
+.btn-logout {
+    border: 2px solid #F4E341;
+    padding: 5px 15px;
+    border-radius: 20px;
+    background: transparent;
+    color: #F4E341;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+.btn-logout:hover { background-color: #F4E341; color: #4B2264; }
+
+
+/* =========================================
+   3. CONTEÚDO PRINCIPAL
+   ========================================= */
+main {
+    flex: 1;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+/* Card de Boas-Vindas (Com fix de centralização) */
+.welcome-section {
+    background-color: transparent; 
+    border: 4px solid #F4E341;
+    border-radius: 15px;
+    padding: 40px;
+    margin-bottom: 50px;
+    max-width: 800px;
+    
+    /* Centraliza a caixa na tela */
+    margin-left: auto;
+    margin-right: auto;
+    
+    color: #F4E341;
+    
+    /* Centraliza o conteúdo interno (Flexbox) */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.welcome-logo {
+    width: 120px;
+    height: auto;
+    margin-bottom: 20px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    padding: 5px; 
+    background: #fff;
+}
+
+.welcome-title {
+    color: #F4E341;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.welcome-text {
+    color: #F4E341;
+    font-size: 1.2rem;
+}
+
+.destaque-ano {
+    color: #ffffff; 
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-top: 25px;
+    display: block;
+    text-decoration: underline;
+}
+
+/* =========================================
+   4. GRID DE TURMAS
+   ========================================= */
+.turmas-container { text-align: center; }
+
+.titulo-secao {
+    color: #F4E341;
+    font-size: 2rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.grid-turmas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Padrão PC: 3 colunas */
+    gap: 20px;
+    max-width: 1100px;
+    margin: 30px auto;
+}
+
+/* Cards das Turmas */
+.card-turma {
+    background-color: #F4E341;
+    border: 2px solid #4B2264;
+    border-radius: 10px;
+    padding: 20px;
+    color: #38184C;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+.card-turma:hover { transform: translateY(-5px); }
+
+.card-turma h3 { color: #4B2264; margin-bottom: 10px; font-size: 1.2rem; }
+.card-turma p { font-size: 0.95rem; margin-bottom: 5px; font-weight: 500; }
+.horario { font-weight: bold; color: #d32f2f; margin-bottom: 15px !important; }
+
+.btn-saiba-mais {
+    background-color: #4B2264;
+    color: #F4E341;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+    margin-top: auto;
+    border: 1px solid #4B2264;
+}
+.btn-saiba-mais:hover { background-color: #fff; color: #4B2264; }
+
+
+/* =========================================
+   5. RODAPÉ (FOOTER)
+   ========================================= */
+footer {
+    background-color: #38184C;
+    padding: 20px 40px;
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    flex-direction: column; /* Mobile: empilhado */
+    gap: 10px;
+}
+
+.admin-login-link {
+    font-size: 0.8rem;
+    color: #666;
+    opacity: 0.5;
+    transition: 0.3s;
+}
+.admin-login-link:hover { color: #F4E341; opacity: 1; }
+
+
+/* =========================================
+   6. MODAL (Pop-up)
+   ========================================= */
+.modal-fundo {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    animation: fadeIn 0.3s;
+}
+
+.modal-conteudo {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 30px;
+    border: 3px solid #F4E341;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    position: relative;
+    color: #38184C;
+}
+
+.fechar-modal {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.btn-whatsapp-modal {
+    background-color: #25D366;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 20px;
+    border: none;
+}
+.btn-whatsapp-modal:hover { background-color: #1ebc57; color: white; }
+
+@keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+
+
+/* =========================================
+   7. RESPONSIVIDADE (MEDIA QUERIES)
+   Aqui ajustamos o layout para TABLETS e PCs
+   ========================================= */
+
+/* Tablets (ajuste menor) */
+@media (max-width: 768px) {
+    .grid-turmas { grid-template-columns: 1fr; } /* Turmas uma embaixo da outra */
+    .welcome-title { font-size: 1.8rem; }
+}
+
+/* PC e Telas Grandes (Minimo 900px) */
+@media (min-width: 900px) {
+    
+    /* Menu vira horizontal */
+    header {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 10px 50px;
+        height: 100px;
+    }
+
+    .nav-links {
+        flex-direction: row; /* Links lado a lado */
+        width: auto;
+        gap: 25px;
+    }
+    
+    .logo-container img { margin-bottom: 0; height: 80px; }
+
+    /* Footer ajustado */
+    footer {
+        flex-direction: row;
+    }
+    .admin-login-link {
+        position: absolute;
+        right: 40px;
+    }
+}
+
+/* =========================================
+   PÁGINA: PROFESSORES
+   ========================================= */
+
+/* Aumenta a largura máxima só para esta página */
+.box-professores {
+    max-width: 1300px !important;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.professores-grid {
+    display: grid;
+    /* MÁGICA RESPONSIVA: Cria colunas automáticas de no mínimo 280px */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+    padding-bottom: 20px;
+}
+
+/* O Card do Professor */
+.card-prof {
+    background-color: #fff;
+    border: 2px solid #F4E341;
+    border-radius: 10px;
+    color: #38184C;
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Garante que nada saia do card */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.card-prof:hover {
+    transform: translateY(-5px); /* Sobe um pouquinho ao passar o mouse */
+    box-shadow: 0 8px 12px rgba(0,0,0,0.2);
+}
+
+/* Foto do Professor */
+.card-prof img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;       /* Corta a imagem para preencher sem esticar */
+    object-position: top center; /* Foca no rosto (parte de cima) */
+    border-bottom: 2px solid #F4E341;
+    display: block;
+}
+
+/* Placeholder para quando não tem foto (Substitui o style inline) */
+.img-placeholder {
+    height: 300px;
+    background: #ddd;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border-bottom: 2px solid #F4E341;
+}
+
+/* Textos */
+.info {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Faz ocupar o resto da altura */
+}
+
+.info h3 {
+    margin-bottom: 10px;
+    color: #4B2264;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.info p {
+    font-size: 1rem;
+    line-height: 1.4;
+    margin-bottom: 8px;
+}
+
+.desc {
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: auto; /* Empurra a descrição para o final se sobrar espaço */
+    font-style: italic;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+}
+
+/* =========================================
+   PÁGINA: METODOLOGIA
+   ========================================= */
+
+/* Ajuste da caixa principal (Remove borda e fundo) */
+.box-metodologia {
+    background: transparent !important;
+    border: none !important;
+    max-width: 1000px !important;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.metodologia-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px; /* Reduzi um pouco para mobile */
+    margin-top: 30px;
+}
+
+/* Os Pilares (Caixas com ícones) */
+.pilar-box {
+    background-color: #fff;
+    border-left: 5px solid #F4E341; /* Linha amarela lateral */
+    padding: 25px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 900px;
+    text-align: left;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    
+    /* Layout Flex: Ícone lado a lado com texto */
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* No celular muito pequeno, empilha ícone e texto */
+@media (max-width: 480px) {
+    .pilar-box {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+.icone-pilar {
+    font-size: 3rem;
+    min-width: 80px;
+    text-align: center;
+}
+
+.conteudo-pilar h2 {
+    color: #4B2264;
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.conteudo-pilar p {
+    color: #333;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+/* Faixa de destaque final */
+.faixa-destaque {
+    background-color: #F4E341;
+    color: #4B2264;
+    padding: 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* =========================================
+   PÁGINA: VALORES (PLANOS)
+   ========================================= */
+
+/* Ajuste da caixa principal */
+.box-valores {
+    background: transparent !important;
+    border: none !important;
+    max-width: 1000px !important;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.pricing-container {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os cards quebrem de linha */
+    justify-content: center; /* Centraliza os cards */
+    gap: 30px;
+    margin-top: 30px;
+}
+
+/* Card de Preço */
+.card-price {
+    background-color: #fff;
+    color: #38184C;
+    border-radius: 15px;
+    width: 100%;           /* No celular ocupa tudo */
+    max-width: 300px;      /* No PC trava em 300px */
+    padding: 30px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    
+    /* Garante centralização se sobrar espaço */
+    margin: 0 auto; 
+}
+
+.card-price:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    border-color: #F4E341;
+}
+
+.titulo-plano {
+    color: #4B2264;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.subtitulo {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.preco {
+    font-size: 2.5rem;
+    color: #38184C;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+/* Lista de benefícios */
+.lista-beneficios {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+    flex: 1; /* Empurra o botão para o final */
+    text-align: left;
+}
+
+.lista-beneficios li {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 0.95rem;
+}
+
+/* Botão do Card */
+.btn-plano {
+    background-color: #4B2264;
+    color: #F4E341;
+    padding: 12px;
+    border-radius: 25px;
+    font-weight: bold;
+    display: block;
+    width: 100%;
+    transition: 0.3s;
+    border: 1px solid #4B2264;
+}
+
+.btn-plano:hover {
+    background-color: #38184C;
+    color: #fff;
+    border-color: #fff;
+}
+
+/* =========================================
+   PÁGINA: LOCALIZAÇÃO
+   ========================================= */
+
+/* Caixa Principal */
+.box-localizacao {
+    background: transparent !important;
+    border: none !important;
+    max-width: 1100px !important; /* Um pouco mais largo para caber o mapa */
+    margin: 0 auto;
+    width: 100%;
+}
+
+.localizacao-container {
+    display: flex;
+    flex-wrap: wrap; /* Permite quebrar linha no celular */
+    gap: 40px;
+    margin-top: 30px;
+    background-color: #fff;
+    border-radius: 15px;
+    overflow: hidden; /* Garante que nada saia das bordas arredondadas */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    border: 2px solid #F4E341;
+}
+
+/* Coluna 1: Informações de Texto */
+.info-local {
+    flex: 1; /* Ocupa espaço igual */
+    min-width: 300px; /* Não fica menor que 300px */
+    padding: 40px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.info-local h2 {
+    color: #4B2264;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    border-bottom: 2px solid #F4E341;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.info-local p {
+    color: #333;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.info-local strong {
+    color: #4B2264;
+}
+
+/* Botão de Traçar Rota */
+.btn-rota {
+    display: inline-block;
+    background-color: #4B2264;
+    color: #F4E341;
+    padding: 15px 30px;
+    border-radius: 30px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px;
+    text-transform: uppercase;
+    transition: 0.3s;
+    border: 1px solid #4B2264;
+    width: fit-content;
+}
+
+.btn-rota:hover {
+    background-color: #fff;
+    color: #4B2264;
+}
+
+/* Coluna 2: O Mapa */
+.mapa-container {
+    flex: 1; /* Ocupa espaço igual */
+    min-width: 300px;
+    min-height: 400px; /* Altura mínima do mapa */
+}
+
+/* Faz o iframe do Google Maps ocupar tudo */
+.mapa-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block; /* Remove espaços brancos extras */
+}
+
+/* Ajuste para celular: inverte a ordem (Mapa em cima ou embaixo?) */
+@media (max-width: 768px) {
+    .localizacao-container {
+        flex-direction: column-reverse; /* Mapa fica em cima, Texto embaixo (ou vice-versa se tirar essa linha) */
+    }
+    .info-local {
+        text-align: center;
+        align-items: center;
+    }
+    .mapa-container {
+        height: 300px; /* Mapa um pouco menor no celular */
+    }
+}
+
+/* =========================================
+   PÁGINA: CONTATO (FORMULÁRIOS)
+   ========================================= */
+
+.box-contato {
+    background: transparent !important;
+    border: none !important;
+    max-width: 800px !important;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Container do Formulário */
+.form-container {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    border: 2px solid #F4E341;
+    text-align: left; /* Garante que os labels fiquem na esquerda */
+}
+
+/* Grupos de Input (Label + Campo) */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block; /* Label fica em cima do campo */
+    margin-bottom: 8px;
+    color: #4B2264;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+/* Estilo dos Campos (Input e Textarea) */
+.form-control {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit; /* Usa a mesma fonte do site */
+    transition: border-color 0.3s;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #4B2264; /* Fica roxo quando clica */
+    box-shadow: 0 0 5px rgba(75, 34, 100, 0.2);
+}
+
+/* Área de texto maior */
+textarea.form-control {
+    resize: vertical; /* Permite esticar apenas para baixo */
+    min-height: 120px;
+}
+
+/* Botão de Enviar */
+.btn-enviar {
+    background-color: #25D366; /* Verde WhatsApp/Sucesso */
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1.1rem;
+    transition: background-color 0.3s;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+.btn-enviar:hover {
+    background-color: #1ebc57;
+}
+
+/* Link alternativo (WhatsApp) */
+.zap-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #666;
+    font-size: 0.9rem;
+}
+.zap-link a {
+    color: #25D366;
+    font-weight: bold;
+}
+
+/* =========================================
+   PÁGINA: LISTA DE ALUNOS (ADMIN)
+   ========================================= */
+
+/* Centraliza a caixa na tela */
+.box-alunos {
+    background: transparent !important;
+    border: none !important;
+    max-width: 1000px !important;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Cria o fundo branco e a borda arredondada */
+.tabela-responsive {
+    overflow-x: auto; /* Permite rolar no celular */
+    background-color: #fff; /* Fundo BRANCO (Isso vai resolver a transparência) */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    border: 2px solid #F4E341; /* Borda Amarela */
+    margin-top: 20px;
+}
+
+.tabela-alunos {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+/* Cabeçalho da Tabela (Roxo com fundo amarelo) */
+.tabela-alunos thead {
+    background-color: #F4E341;
+}
+
+.tabela-alunos th {
+    padding: 15px;
+    text-align: left;
+    font-weight: bold;
+    color: #4B2264 !important; /* FORÇA A COR ROXA NO TÍTULO */
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+/* Linhas da Tabela (Texto escuro) */
+.tabela-alunos td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    color: #333; /* Texto Cinza Escuro */
+    font-size: 0.95rem;
+}
+
+/* Efeito Zebrado (uma linha cinza, uma branca) */
+.tabela-alunos tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Efeito ao passar o mouse */
+.tabela-alunos tbody tr:hover {
+    background-color: #fffde7;
+}
+
+/* Botão de Voltar ao Admin */
+.btn-saiba-mais {
+    display: inline-block;
+    margin-top: 15px;
+    color: #F4E341;
+    font-weight: bold;
+    text-decoration: none;
+}
+.btn-saiba-mais:hover {
+    color: #fff;
+    text-decoration: underline;
+}

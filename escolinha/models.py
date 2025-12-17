@@ -29,6 +29,7 @@ class Plano(models.Model):
     
 class Aluno(models.Model):
     nome = models.CharField(max_length=200)
+    telefone = models.CharField(max_length=20, blank=True, null=True, verbose_name="Tel. do Responsável")
     ano_nascimento = models.IntegerField(help_text="Ex: 2015")
     # Podemos adicionar um campo de observação opcional
     observacoes = models.TextField(blank=True, null=True, help_text="Posição, alergias, etc.")

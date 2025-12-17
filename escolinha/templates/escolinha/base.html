@@ -8,90 +8,7 @@
     
     <link rel="shortcut icon" href="{% static 'escolinha/img/logoestacao2.jpg' %}" type="image/jpg">
 
-    <style>
-        /* --- ESTILOS GERAIS (CSS) --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #4B2264; /* Roxo Realeza */
-            color: #F4E341; /* Amarelo */
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        a { text-decoration: none; color: #F4E341; transition: 0.3s; }
-        a:hover { color: #fff; }
-
-        /* NAVBAR */
-        header {
-            background-color: #38184C;
-            padding: 10px 40px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-
-        .logo-container img { height: 60px; width: auto; }
-
-        .nav-links { display: flex; gap: 20px; align-items: center; font-weight: bold; }
-
-        /* Botão Sair */
-        .btn-logout {
-            border: 2px solid #F4E341;
-            padding: 5px 15px;
-            border-radius: 20px;
-            background: transparent;
-            color: #F4E341;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        .btn-logout:hover { background-color: #F4E341; color: #4B2264; }
-
-        /* MAIN */
-        main { flex: 1; padding: 40px 20px; text-align: center; }
-
-        /* Estilos comuns para caixas de conteúdo */
-        .box { 
-            border: 2px solid #F4E341; 
-            padding: 40px; 
-            margin: 0 auto; 
-            max-width: 800px; 
-            border-radius: 15px;
-            background-color: rgba(255, 255, 255, 0.05);
-        }
-
-        h1 { margin-bottom: 20px; font-size: 2.5rem; }
-
-        /* FOOTER */
-        footer {
-            background-color: #38184C;
-            padding: 20px 40px;
-            text-align: center;
-            font-size: 0.9rem;
-            margin-top: auto;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .admin-login-link {
-            position: absolute;
-            right: 40px;
-            font-size: 0.8rem;
-            color: #666;
-            opacity: 0.5;
-            transition: 0.3s;
-        }
-        
-        .admin-login-link:hover {
-            color: #F4E341;
-            opacity: 1;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
 
@@ -105,14 +22,13 @@
         <nav class="nav-links">
             <a href="{% url 'metodologia' %}">Metodologia</a>
             
-            <a href="https://www.google.com/maps/search/?api=1&query=Escola+de+Futebol+Estação+de+Craques+Barra+da+Tijuca" target="_blank">Localização</a>
+            <a href="{% url 'localizacao' %}">Localização</a>
             
             <a href="{% url 'professores' %}">Professores</a>
+
             <a href="{% url 'valores' %}">Valores</a>
             
-            <a href="https://wa.me/5521995991357?text=Olá, gostaria de saber mais sobre a escolinha!" target="_blank" style="color: #F4E341;">
-                Contato
-            </a>
+            <a href="{% url 'contato' %}">Contato</a>
             
             {% if user.is_authenticated %}
                 <span style="color: #fff; opacity: 0.5;">|</span>

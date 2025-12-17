@@ -27,3 +27,8 @@ def lista_alunos(request):
     alunos = Aluno.objects.all().order_by('nome')
     return render(request, 'escolinha/alunos.html', {'alunos': alunos})
 
+def localizacao(request):
+    return render(request, 'escolinha/localizacao.html')
+
+def contato(request):
+    return render(request, 'escolinha/contato.html')

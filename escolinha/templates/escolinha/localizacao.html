@@ -1,0 +1,45 @@
+{% extends 'escolinha/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="box box-localizacao">
+    <h1>Onde Estamos</h1>
+    <p>Venha conhecer nossa estrutura e fazer uma aula experimental.</p>
+
+    <div class="localizacao-container">
+        
+        <div class="info-local">
+            <h2>Endereço</h2>
+            <p>
+                <strong>Escolinha Estação de Craques</strong><br>
+                Clube Náutico Mandala<br>
+                Avenida Prefeito Dulcídio Cardoso, 777 - Barra da Tijuca<br>
+                Rio de Janeiro - RJ<br>
+                CEP: 22631-004
+            </p>
+
+            <h2>Contatos</h2>
+            <p>
+                📞 (21) 99599-1357<br>
+                📧 contato@estacaodecraques.com.br
+            </p>
+
+            <a href="https://maps.google.com" target="_blank" class="btn-rota">
+                📍 Traçar Rota
+            </a>
+        </div>
+
+        <div class="mapa-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3675.296041629239!2d-43.172896!3d-22.906847!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDU0JzI0LjYiUyA0M8KwMTAnMjIuNCJX!5e0!3m2!1spt-BR!2sbr!4v1600000000000!5m2!1spt-BR!2sbr" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
