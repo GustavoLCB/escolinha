@@ -7,15 +7,22 @@
     <h1>Controle de Craques</h1>
     <p>Lista de alunos matriculados e contatos.</p>
 
+    <div style="margin-bottom: 20px; text-align: right;">
+        <a href="{% url 'criar_aluno' %}" class="btn-enviar" style="background-color: #28a745; text-decoration: none; display: inline-block; width: auto; padding: 10px 20px;">
+            + Matricular Novo Aluno
+        </a>
+    </div>
+
     <div class="tabela-responsive">
+    ```
         <table class="tabela-alunos">
             <thead>
                 <tr>
                     <th>Nome do Atleta</th>
-                    <th>Contato Responsável</th>
-                    <th>Nascimento (Idade)</th>
+                    <th>Contato</th>
+                    <th>Idade</th>
                     <th>Categoria</th>
-                </tr>
+                    <th style="text-align: center;">Ações</th> </tr>
             </thead>
             <tbody>
                 {% for aluno in alunos %}
@@ -32,22 +39,26 @@
                         {% endif %}
                     </td>
 
-                    <td>
-                        {{ aluno.ano_nascimento }} 
-                        <span style="font-size: 0.85rem; color: #666;">
-                            ({{ aluno.idade }} anos)
-                        </span>
-                    </td>
+                    <td>{{ aluno.idade }} anos</td>
                     
                     <td>
                         <span style="background: #F4E341; color: #4B2264; padding: 4px 10px; border-radius: 15px; font-weight: bold; font-size: 0.85rem;">
                             {{ aluno.categoria }}
                         </span>
                     </td>
+
+                    <td style="text-align: center;">
+                        <a href="{% url 'editar_aluno' aluno.id %}" title="Editar" style="text-decoration: none; font-size: 1.2rem; margin-right: 15px;">
+                            ✏️
+                        </a>
+                        <a href="{% url 'deletar_aluno' aluno.id %}" title="Excluir" style="text-decoration: none; font-size: 1.2rem;">
+                            ❌
+                        </a>
+                    </td>
                 </tr>
                 {% empty %}
                 <tr>
-                    <td colspan="4" style="text-align:center; padding: 20px;">
+                    <td colspan="5" style="text-align:center; padding: 20px;">
                         Nenhum aluno cadastrado.
                     </td>
                 </tr>

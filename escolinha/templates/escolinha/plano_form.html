@@ -1,0 +1,43 @@
+{% extends 'escolinha/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="box box-contato"> 
+    <h1>
+        {% if form.instance.pk %}
+            ✏️ Editar Plano
+        {% else %}
+            💰 Criar Novo Plano
+        {% endif %}
+    </h1>
+
+    <p>
+        {% if form.instance.pk %}
+            Alterando informações do plano: <strong>{{ form.instance.titulo }}</strong>
+        {% else %}
+            Defina o nome, preço e benefícios do novo plano.
+        {% endif %}
+    </p>
+
+    <div class="form-container">
+        <form method="POST">
+            {% csrf_token %}
+            
+            {% for field in form %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.help_text %}
+                    <small style="color: #666; display: block; margin-top: 5px;">{{ field.help_text }}</small>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button type="submit" class="btn-enviar">💾 Salvar Plano</button>
+                <a href="{% url 'valores' %}" class="btn-enviar" style="background: #ccc; text-align: center; text-decoration: none; color: #333;">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

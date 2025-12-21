@@ -14,18 +14,28 @@ class Professor(models.Model):
         return self.nome
 
 class Plano(models.Model):
-    titulo = models.CharField(max_length=100, help_text="Ex: Sócio Clube Mandala")
-    subtitulo = models.CharField(max_length=100, help_text="Ex: Para quem já é sócio")
-    preco = models.DecimalField(max_digits=6, decimal_places=2) # Ex: 150.00
-    # Vamos usar TextField para listar os benefícios, um por linha
-    beneficios = models.TextField(help_text="Coloque um benefício por linha")
-    
-    def __str__(self):
-        return self.titulo
-    
-    # Função auxiliar para separar os benefícios em lista no HTML
+    PERIODOS = [
+        ('/mês', '/mês'),
+        ('/aula', '/aula'),
+        ('/hora', '/hora'),
+        ('/ano', '/ano'),
+    ]
+
+    titulo = models.CharField(max_length=50)
+    subtitulo = models.CharField(max_length=100, blank=True, null=True)
+    preco = models.DecimalField(max_digits=6, decimal_places=2)
+    periodo = models.CharField(
+        max_length=20, 
+        choices=PERIODOS, 
+        default='/mês',
+        verbose_name="Cobrança")
+    beneficios = models.TextField(help_text="Separe os itens por quebra de linha")
+
     def get_beneficios_list(self):
         return self.beneficios.split('\n')
+
+    def __str__(self):
+        return self.titulo
     
 class Aluno(models.Model):
     nome = models.CharField(max_length=200)
@@ -51,3 +61,11 @@ class Aluno(models.Model):
         elif id <= 15: return "Sub-15"
         elif id <= 17: return "Sub-17"
         else: return "Adulto"    
+
+class Turma(models.Model):
+    nome = models.CharField(max_length=50, help_text="Ex: Sub-11 Manhã")
+    horario = models.CharField(max_length=50, help_text="Ex: 08:00 às 10:00")
+    dias = models.CharField(max_length=50, help_text="Ex: Terças e Quintas")
+    
+    def __str__(self):
+        return f"{self.nome} - {self.dias}"

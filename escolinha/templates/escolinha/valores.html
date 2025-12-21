@@ -2,36 +2,46 @@
 {% load static %}
 
 {% block content %}
-
 <div class="box box-valores">
-    <h1>Planos e Mensalidades</h1>
-    <p>Escolha a melhor opção para o seu pequeno craque.</p>
+    <h1>Planos e Valores</h1>
+    <p>Invista no futuro do seu pequeno craque.</p>
 
-    <div class="pricing-container">
-        
+    {% if user.is_authenticated %}
+    <div style="text-align: center; margin-top: 40px; margin-bottom: 30px;">
+        <a href="{% url 'criar_plano' %}" class="btn-enviar" style="background-color: #28a745; text-decoration: none; display: inline-block; padding: 12px 25px;">
+            + Criar Novo Plano
+        </a>
+    </div>
+    {% endif %}
+
+    <div class="valores-grid">
         {% for plano in planos %}
-        <div class="card-price">
-            <h3 class="titulo-plano">{{ plano.titulo }}</h3>
-            <p class="subtitulo">{{ plano.subtitulo }}</p>
-            
+        <div class="card-valor">
+            <h3>{{ plano.titulo }}</h3>
+            <span class="subtitulo">{{ plano.subtitulo }}</span>
             <div class="preco">
-                R$ {{ plano.preco }}
-            </div>
-
-            <ul class="lista-beneficios">
+    R$ {{ plano.preco }} <small>{{ plano.periodo }}</small>
+</div>
+            
+            
+            <ul class="beneficios">
                 {% for beneficio in plano.get_beneficios_list %}
-                    <li>✅ {{ beneficio }}</li>
+                    <li>⚽ {{ beneficio }}</li>
                 {% endfor %}
             </ul>
 
-            <a href="https://wa.me/5521999999999?text=Olá, quero contratar o plano {{ plano.titulo }}" target="_blank" class="btn-plano">
-                Quero este
-            </a>
+            {% if user.is_authenticated %}
+            <div style="margin-top: 15px; border-top: 1px solid #eee; padding-top: 10px;">
+                <a href="{% url 'editar_plano' plano.id %}" style="margin-right: 10px; text-decoration: none;">✏️ Editar</a>
+                <a href="{% url 'deletar_plano' plano.id %}" style="color: red; text-decoration: none;">🗑️ Excluir</a>
+            </div>
+            {% endif %}
+            
+            <a href="https://wa.me/5521995991357?text=Olá, gostaria de saber mais sobre o plano {{ plano.titulo }}" class="btn-matricula" target="_blank">
+    MATRICULAR AGORA
+</a>
         </div>
-        {% empty %}
-            <p>Nenhum plano cadastrado.</p>
         {% endfor %}
-
     </div>
 </div>
 {% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'escolinha/base.html' %}
+{% block content %}
+<div class="box box-alunos"> <h1>Quadro de Horários</h1>
+    <p>Confira os dias e horários dos treinos.</p>
+
+    {% if user.is_authenticated %}
+    <div style="text-align: right; margin-bottom: 20px;">
+        <a href="{% url 'criar_turma' %}" class="btn-enviar" style="background-color: #28a745; text-decoration: none; padding: 10px 20px;">
+            + Nova Turma
+        </a>
+    </div>
+    {% endif %}
+
+    <div class="tabela-responsive">
+        <table class="tabela-alunos"> <thead>
+                <tr>
+                    <th>Categoria/Turma</th>
+                    <th>Dias da Semana</th>
+                    <th>Horário</th>
+                    {% if user.is_authenticated %}<th style="text-align: center;">Gerenciar</th>{% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for turma in turmas %}
+                <tr>
+                    <td><strong>{{ turma.nome }}</strong></td>
+                    <td>{{ turma.dias }}</td>
+                    <td>{{ turma.horario }}</td>
+                    
+                    {% if user.is_authenticated %}
+                    <td style="text-align: center;">
+                        <a href="{% url 'editar_turma' turma.id %}" style="text-decoration: none; font-size: 1.2rem; margin-right: 15px;">✏️</a>
+                        <a href="{% url 'deletar_turma' turma.id %}" style="text-decoration: none; font-size: 1.2rem;">❌</a>
+                    </td>
+                    {% endif %}
+                </tr>
+                {% empty %}
+                <tr><td colspan="4" style="text-align:center; padding: 20px;">Nenhuma turma cadastrada ainda.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

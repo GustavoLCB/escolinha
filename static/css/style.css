@@ -199,7 +199,15 @@ main {
     margin-top: auto;
     border: 1px solid #4B2264;
 }
-.btn-saiba-mais:hover { background-color: #fff; color: #4B2264; }
+
+/* Correção do Botão: Mantém a cor roxa e o texto branco ao passar o mouse */
+.btn-saiba-mais:hover {
+    background-color: #4B2264 !important; /* O !important garante que nada mude a cor */
+    color: #ffffff !important; /* Garante que o texto continue branco */
+    transform: scale(1.05); /* Mantém o efeito de crescer um pouquinho */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Adiciona uma sombrinha extra para destaque */
+    cursor: pointer;
+}
 
 
 /* =========================================
@@ -861,4 +869,162 @@ textarea.form-control {
 .btn-saiba-mais:hover {
     color: #fff;
     text-decoration: underline;
+}
+/* =========================================
+   PÁGINA: VALORES (PLANOS)
+   ========================================= */
+
+.box-valores {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Container que organiza os cards lado a lado */
+.valores-grid {
+    display: flex;
+    flex-wrap: wrap; /* Permite quebrar linha se não couber */
+    justify-content: center; /* Centraliza no meio da tela */
+    gap: 30px; /* Espaço entre os cards */
+    margin-top: 30px;
+}
+
+/* O visual do Cartão (Branco com borda amarela) */
+.card-valor {
+    background-color: #fff; /* Fundo BRANCO */
+    border: 2px solid #F4E341; /* Borda Amarela */
+    border-radius: 15px; /* Cantos arredondados */
+    padding: 30px;
+    width: 320px; /* Largura fixa para ficarem iguais */
+    color: #4B2264;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* Sombra suave */
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease;
+}
+
+/* Efeito ao passar o mouse */
+.card-valor:hover {
+    transform: translateY(-5px); /* Sobe um pouquinho */
+    border-color: #4B2264;
+}
+
+/* Títulos e Textos */
+.card-valor h3 {
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    color: #4B2264;
+}
+
+.card-valor .subtitulo {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 20px;
+    display: block;
+    font-style: italic;
+}
+
+/* Preço Grande */
+.card-valor .preco {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #28a745; /* Verde dinheiro */
+    margin: 10px 0 20px 0;
+}
+
+.card-valor .preco small {
+    font-size: 1rem;
+    color: #888;
+    font-weight: normal;
+}
+
+/* Lista de Benefícios */
+.card-valor .beneficios {
+    list-style: none; /* Remove as bolinhas feias */
+    padding: 0;
+    margin-bottom: 25px;
+    text-align: left; /* Texto alinhado a esquerda */
+}
+
+.card-valor .beneficios li {
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 5px;
+    color: #555;
+}
+
+/* Botão "Matricular Agora" */
+.btn-matricula {
+    display: block;
+    background-color: #4B2264;
+    color: #F4E341;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 25px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+}
+
+.btn-matricula:hover {
+    background-color: #38184C;
+    color: #fff;
+}
+
+/* =========================================
+   CORREÇÃO FINAL: ALINHAMENTO PERFEITO (2 POR LINHA)
+   ========================================= */
+
+.grid-turmas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px; 
+    margin-top: 30px;
+    max-width: 1200px; 
+    margin-left: auto;
+    margin-right: auto;
+    
+    /* Isso garante que cards na mesma linha tenham a mesma altura total */
+    align-items: stretch; 
+}
+
+.card-turma {
+    background-color: #F4E341;
+    border-radius: 20px;
+    padding: 40px 30px; /* Reduzi levemente as laterais para o texto caber melhor */
+    
+    /* Mantendo a largura de 50% */
+    width: calc(50% - 40px);
+    min-width: 350px; 
+    
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    text-align: center;
+    color: #4B2264;
+    
+    /* Flexbox vertical para empurrar o botão para o rodapé */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Espalha o conteúdo: Título no topo, Botão na base */
+}
+
+/* --- A CORREÇÃO MÁGICA ESTÁ AQUI --- */
+.card-turma h3 {
+    font-size: 1.6rem; /* Ajustei levemente para não quebrar tanto */
+    font-weight: 900;
+    margin-bottom: 15px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    
+    /* ALTURA MÍNIMA AUMENTADA: */
+    /* Força todos os títulos a terem espaço para 3 linhas, igualando os cards */
+    min-height: 90px; 
+    
+    display: flex;
+    align-items: center; /* Centraliza o texto verticalmente nesse espaço */
+    justify-content: center;
 }

@@ -1,0 +1,17 @@
+{% extends 'escolinha/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="box box-contato" style="text-align: center; max-width: 600px;">
+    <h1 style="color: #d9534f;">Excluir Professor?</h1>
+    <p style="font-size: 1.2rem; margin: 20px 0;">
+        Tem certeza que deseja remover <br>
+        <strong style="font-size: 1.5rem; color: #4B2264;">{{ professor.nome }}</strong>?
+    </p>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn-enviar" style="background-color: #d9534f;">🗑️ Sim, Excluir</button>
+        <a href="{% url 'professores' %}" class="btn-enviar" style="background-color: #ccc; margin-top: 10px; display: inline-block; text-decoration: none; color: #333;">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

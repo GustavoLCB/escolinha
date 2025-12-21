@@ -1,0 +1,22 @@
+{% extends 'escolinha/base.html' %}
+{% load static %}
+{% block content %}
+<div class="box box-contato"> 
+    <h1>{% if form.instance.pk %}✏️ Editar Turma{% else %}📅 Nova Turma{% endif %}</h1>
+    <div class="form-container">
+        <form method="POST">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="form-group">
+                <label>{{ field.label }}</label>
+                {{ field }}
+            </div>
+            {% endfor %}
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button type="submit" class="btn-enviar">💾 Salvar</button>
+                <a href="{% url 'lista_turmas' %}" class="btn-enviar" style="background: #ccc; color: #333; text-decoration: none; text-align: center;">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

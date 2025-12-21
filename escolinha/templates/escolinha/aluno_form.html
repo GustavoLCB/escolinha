@@ -1,0 +1,44 @@
+{% extends 'escolinha/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="box box-contato"> 
+    
+    <h1>
+        {% if aluno %}
+            ✏️ Editar Aluno
+        {% else %}
+            ✨ Cadastrar Novo Aluno
+        {% endif %}
+    </h1>
+
+    <p>
+        {% if aluno %}
+            Alterando dados de: <strong>{{ aluno.nome }}</strong>
+        {% else %}
+            Preencha os dados abaixo para matricular um novo craque.
+        {% endif %}
+    </p>
+
+    <div class="form-container">
+        <form method="POST">
+            {% csrf_token %}
+            
+            {% for field in form %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.help_text %}
+                    <small style="color: #666;">{{ field.help_text }}</small>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button type="submit" class="btn-enviar">💾 Salvar</button>
+                <a href="{% url 'lista_alunos' %}" class="btn-enviar" style="background: #ccc; text-align: center; text-decoration: none; color: #333;">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

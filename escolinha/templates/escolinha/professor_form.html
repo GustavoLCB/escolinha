@@ -1,0 +1,28 @@
+{% extends 'escolinha/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="box box-contato"> 
+    <h1>
+        {% if professor %} ✏️ Editar Professor {% else %} ✨ Novo Professor {% endif %}
+    </h1>
+
+    <div class="form-container">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            {% for field in form %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+            </div>
+            {% endfor %}
+
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button type="submit" class="btn-enviar">💾 Salvar</button>
+                <a href="{% url 'professores' %}" class="btn-enviar" style="background: #ccc; text-align: center; text-decoration: none; color: #333;">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

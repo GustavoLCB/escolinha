@@ -7,6 +7,14 @@
     <h1>Nossa Equipe de Craques</h1>
     <p>Conheça os profissionais que cuidarão do desenvolvimento do seu filho.</p>
 
+    {% if user.is_authenticated %}
+    <div style="margin-top: 20px; text-align: center;">
+        <a href="{% url 'criar_professor' %}" class="btn-enviar" style="background-color: #28a745; text-decoration: none; display: inline-block; width: auto; padding: 10px 20px;">
+            + Cadastrar Novo Professor
+        </a>
+    </div>
+    {% endif %}
+
     <div class="professores-grid">
         
         {% for professor in professores %}
@@ -15,9 +23,7 @@
             {% if professor.foto %}
                 <img src="{{ professor.foto.url }}" alt="Foto de {{ professor.nome }}">
             {% else %}
-                <div class="img-placeholder">
-                    Sem Foto
-                </div>
+                <div class="img-placeholder">Sem Foto</div>
             {% endif %}
             
             <div class="info">
@@ -26,6 +32,17 @@
                 
                 {% if professor.descricao %}
                     <p class="desc">{{ professor.descricao }}</p>
+                {% endif %}
+
+                {% if user.is_authenticated %}
+                <div style="margin-top: 15px; border-top: 1px solid #eee; padding-top: 10px; text-align: right;">
+                    <a href="{% url 'editar_professor' professor.id %}" title="Editar" style="text-decoration: none; font-size: 1.2rem; margin-right: 10px;">
+                        ✏️
+                    </a>
+                    <a href="{% url 'deletar_professor' professor.id %}" title="Excluir" style="text-decoration: none; font-size: 1.2rem;">
+                        ❌
+                    </a>
+                </div>
                 {% endif %}
             </div>
         </div>
