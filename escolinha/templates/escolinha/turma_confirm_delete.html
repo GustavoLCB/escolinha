@@ -1,13 +1,29 @@
 {% extends 'escolinha/base.html' %}
 {% load static %}
+
 {% block content %}
-<div class="box box-contato" style="text-align: center; max-width: 600px;">
-    <h1 style="color: #d9534f;">Excluir Turma?</h1>
-    <p style="font-size: 1.2rem; margin: 20px 0;">Tem certeza que deseja apagar a turma <strong>{{ turma.nome }}</strong>?</p>
+<div class="box box-contato" style="text-align: center; max-width: 600px; margin: 50px auto;">
+    
+    <h1 style="color: #d9534f; margin-bottom: 20px;">Excluir Turma?</h1>
+    
+    <p style="font-size: 1.2rem; margin-bottom: 30px; color: #fff;">
+        Tem certeza que deseja apagar a turma <br>
+        <strong style="font-size: 1.5rem; color: #F4E341;">{{ turma.nome }}</strong>?
+    </p>
+
     <form method="POST">
         {% csrf_token %}
-        <button type="submit" class="btn-enviar" style="background-color: #d9534f;">🗑️ Sim, Excluir</button>
-        <a href="{% url 'lista_turmas' %}" class="btn-enviar" style="background: #ccc; color: #333; text-decoration: none; text-align: center;">Cancelar</a>
+        
+        <div class="acoes-confirmacao">
+            <button type="submit" class="btn-enviar btn-excluir">
+                🗑️ Sim, Excluir
+            </button>
+            
+            <a href="{% url 'lista_turmas' %}" class="btn-enviar btn-cancelar">
+                Cancelar
+            </a>
+        </div>
+
     </form>
 </div>
 {% endblock %}

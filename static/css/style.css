@@ -1028,3 +1028,48 @@ textarea.form-control {
     align-items: center; /* Centraliza o texto verticalmente nesse espaço */
     justify-content: center;
 }
+
+/* =========================================
+   ÁREA DE CONFIRMAÇÃO (DELETE) - VERSÃO BLINDADA
+   ========================================= */
+
+.acoes-confirmacao {
+    display: flex !important; /* Força o modo flexível */
+    flex-direction: row !important; /* Força ficar um ao lado do outro */
+    justify-content: center !important; /* Centraliza no meio da tela */
+    gap: 20px !important; /* Espaço entre eles */
+    align-items: center !important;
+    width: 100% !important;
+    margin-top: 20px;
+}
+
+/* Forçando os botões a terem tamanho normal */
+.acoes-confirmacao .btn-enviar {
+    width: auto !important; /* CANCELA O 100% DA CLASSE ANTIGA */
+    min-width: 160px !important; /* Tamanho mínimo para ficar bonito */
+    margin: 0 !important; /* Remove margens antigas que atrapalham */
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+/* Cores Específicas */
+.btn-cancelar {
+    background-color: #ccc !important;
+    color: #333 !important;
+}
+
+.btn-excluir {
+    background-color: #d9534f !important;
+    color: white !important;
+}
+
+/* Ajuste para celular (opcional, mas recomendado) */
+@media (max-width: 500px) {
+    .acoes-confirmacao {
+        flex-direction: column !important; /* No celular, um embaixo do outro */
+    }
+    .acoes-confirmacao .btn-enviar {
+        width: 100% !important; /* No celular, largura total */
+    }
+}

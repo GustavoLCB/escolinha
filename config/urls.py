@@ -14,7 +14,7 @@ from escolinha.views import (
 )
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('gestao-super-secreta-2011/', admin.site.urls),
     path('', index, name='home'),
     path('professores/', professores, name='professores'),
     path('professores/novo/', criar_professor, name='criar_professor'),
